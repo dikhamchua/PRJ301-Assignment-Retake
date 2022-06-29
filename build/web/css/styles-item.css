@@ -1,0 +1,51 @@
+
+/* Navigation Bar */
+
+#navigation-bar {
+    background-color: #f8f9fa;
+    padding: 0 7% 0;
+}
+
+
+/* Product item */
+#product-item {
+    padding: 5% 8% 5%;
+    
+}
+
+#product-item .product-cart {
+    padding-top: 20%;
+}
+
+#product-item .product-description{
+    padding-top: 10%;
+}
+
+#product-item .description{
+    margin-top: 5%;
+}
+
+/* Related items */
+#related-items{
+    background-color: #f8f9fa;
+    padding: 0 7% 0;
+
+}
+
+#related-items h2 {
+    padding: 3% 0 3%;
+}
+
+#product .list-group {
+    padding-top: 17%;
+}
+/* Footer */
+#footer {
+    padding: 7% 15%;
+    background-color: #000;
+    text-align: center;
+}
+
+#footer p {
+    color: #fff;
+}
