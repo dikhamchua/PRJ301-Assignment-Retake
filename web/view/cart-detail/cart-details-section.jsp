@@ -21,24 +21,34 @@
                         <th scope="col">No</th>
                         <th scope="col">Image</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Price</th>
                         <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
                         <th scope="col">Amount</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Delete</th>
+                        <th scope="col">Update</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${sessionScope.cartHashMap}" var="product">
+                    <c:forEach items="${sessionScope.cartHashMap}" var="cart" varStatus="status">
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row">${status.index + 1}</th>
                             <td>
-                                <img src="${product.key.imageUrl}" alt="alt"/> 
+                                <img src="${cart.value.product.imageUrl}" alt="alt"/> 
                             </td>
-                            <td>${product.key.name}</td>
-                            <td>${product.key.quantity}</td>
-                            <td>${product.key.price}</td>
-                            <td>${product.key.quantity}</td>
-                            <td><a href="#">Update</a> <a href="">Delete</a></td>
+                            <td>${cart.value.product.name}</td>
+                            <td>${cart.value.quantity}</td>
+                            <td>${cart.value.product.price}</td>
+                            <td>${cart.value.product.price * cart.value.quantity}</td>
+                            <td>
+                                <a href="#">
+                                    <i class="fa-solid fa-trash fa-2x text-danger"></i>
+                                </a> 
+                            </td>
+                            <td>
+                                <a href="">
+                                    <i class="fa-solid fa-pencil fa-2x text-success"></i>
+                                </a>
+                            </td>
                         </tr>
 
                     </c:forEach>
