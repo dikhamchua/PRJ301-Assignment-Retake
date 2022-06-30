@@ -29,12 +29,16 @@
         <servlet-class>controller.CartController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CartDeleteController</servlet-name>
-        <servlet-class>controller.CartDeleteController</servlet-class>
+        <servlet-name>OrderDeleteController</servlet-name>
+        <servlet-class>controller.OrderDeleteController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CartUpdateController</servlet-name>
         <servlet-class>controller.CartUpdateController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderUpdateController</servlet-name>
+        <servlet-class>controller.OrderUpdateController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -65,12 +69,16 @@
         <url-pattern>/cart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CartDeleteController</servlet-name>
-        <url-pattern>/cart-delete</url-pattern>
+        <servlet-name>OrderDeleteController</servlet-name>
+        <url-pattern>/order-delete</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CartUpdateController</servlet-name>
         <url-pattern>/cart-update</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderUpdateController</servlet-name>
+        <url-pattern>/order-update</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -74,7 +74,7 @@
 
                         </c:forEach>
                             <tr>
-                                <th scope="row">${sessionScope.cartHashmap.size() + 1}</th>
+                                <td></td>
                                 <td>
                                     <h3>Total Money</h3>
                                 </td>
