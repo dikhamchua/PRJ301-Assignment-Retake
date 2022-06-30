@@ -17,7 +17,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Cart {
+public class Order {
     private Product product;
     private int quantity;
 }

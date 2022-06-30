@@ -5,6 +5,7 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -39,29 +40,54 @@
                     <tbody>
                         <c:forEach items="${sessionScope.cartHashMap}" var="cart" varStatus="status">
                             <tr>
+                                <fmt:setLocale value = "en_US"/>
                                 <th scope="row">${status.index + 1}</th>
                                 <td>
                                     <img src="${cart.value.product.imageUrl}" alt="alt"/> 
                                 </td>
                                 <td>${cart.value.product.name}</td>
                                 <td>${cart.value.quantity}</td>
-                                <td>${cart.value.product.price}</td>
-                                <td>${cart.value.product.price * cart.value.quantity}</td>
+                                <td>
+                                    <fmt:formatNumber type="currency" value="${cart.value.product.price}">
+                                        
+                                    </fmt:formatNumber>
+                                </td>
+                                <td>
+                                    <fmt:formatNumber type="currency"
+                                                      value="${cart.value.product.price * cart.value.quantity}"
+                                                      maxFractionDigits="2">
+                                    </fmt:formatNumber>
+                                </td>
                                 <td>
                                     <!--Delete action-->
-                                    <a href="cart-delete?productID=${cart.key}">
+                                    <a href="order-delete?productID=${cart.key}">
                                         <i class="fa-solid fa-trash fa-2x text-danger"></i>
                                     </a> 
                                 </td>
                                 <td>
                                     <!--Update Action-->
-                                    <a href="cart-update">
+                                    <a href="order-update?productID=${cart.key}">
                                         <i class="fa-solid fa-pencil fa-2x text-success"></i>
                                     </a>
                                 </td>
                             </tr>
 
                         </c:forEach>
+                            <tr>
+                                <th scope="row">${sessionScope.cartHashmap.size() + 1}</th>
+                                <td>
+                                    <h3>Total Money</h3>
+                                </td>
+                                <td colspan="3"></td>
+                                <td>
+                                    <h3>
+                                        <fmt:formatNumber type="currency"
+                                                      value="${requestScope.totalMoney}"
+                                                      maxFractionDigits="2">
+                                    </fmt:formatNumber>
+                                    </h3>
+                                </td>
+                            </tr>
                     </tbody>
                 </table>
             </c:if>

@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import model.Cart;
+import model.Order;
 import model.Product;
 
 /**
@@ -32,7 +32,7 @@ public class AddCartController extends HttpServlet {
         HttpSession session = request.getSession();
 
         //check hashmap on session ? ... : initalize 
-        HashMap<Integer, Cart> cartHashMap = (HashMap<Integer, Cart>) session.getAttribute("cartHashMap");
+        HashMap<Integer, Order> cartHashMap = (HashMap<Integer, Order>) session.getAttribute("cartHashMap");
         if (cartHashMap == null) {
             cartHashMap = new LinkedHashMap<>();
         }
@@ -40,14 +40,13 @@ public class AddCartController extends HttpServlet {
         //get Product by product ID
         int id = Integer.parseInt(request.getParameter("productID"));
         Product product = productDAO.getProductByID(id);
-        System.out.println(product);
 
         //check product on hashmap ? renew value : put new value
         if (cartHashMap.containsKey(id)) {
             int oldQuantity = cartHashMap.get(id).getQuantity();
             cartHashMap.get(id).setQuantity(oldQuantity + 1);
         } else {
-            cartHashMap.put(id, Cart.builder().product(product).quantity(1).build());
+            cartHashMap.put(id, Order.builder().product(product).quantity(1).build());
         }
         session.setAttribute("cartHashMap", cartHashMap);
         request.getRequestDispatcher("productDetail?productID=" + id).forward(request, response);
