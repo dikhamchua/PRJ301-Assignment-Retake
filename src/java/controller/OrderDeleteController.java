@@ -35,7 +35,7 @@ public class OrderDeleteController extends HttpServlet {
         
         int productID = Integer.parseInt(request.getParameter("productID"));
         cartHashMap.remove(productID);
-        request.getRequestDispatcher("view/cart-detail/cart.jsp").forward(request, response);
+        request.getRequestDispatcher("cart").forward(request, response);
         
     } 
 

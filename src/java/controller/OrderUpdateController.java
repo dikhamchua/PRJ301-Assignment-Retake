@@ -26,20 +26,19 @@ public class OrderUpdateController extends HttpServlet {
         //Prepare
         HttpSession session = request.getSession();
         HashMap<Integer, Order> cartHashMap = (HashMap<Integer, Order>) session.getAttribute("cartHashMap");
+        int productID = Integer.parseInt(request.getParameter("productID"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
         
-        //get id product
-        int productId = Integer.parseInt(request.getParameter("productID"));
+        //update quantity order
+        cartHashMap.get(productID).setQuantity(quantity);
         
-        Order order = cartHashMap.get(productId);
-        session.setAttribute("orderUpdate", order);
-        request.getRequestDispatcher("view/cart-detail/updateOrder.jsp").forward(request, response);
-        
+        request.getRequestDispatcher("cart").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
     }
 
     @Override

@@ -34,7 +34,6 @@
                             <th scope="col">Price</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Delete</th>
-                            <th scope="col">Update</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,52 +41,67 @@
                             <tr>
                                 <fmt:setLocale value = "en_US"/>
                                 <th scope="row">${status.index + 1}</th>
+
+                                <!--Image-->
                                 <td>
                                     <img src="${cart.value.product.imageUrl}" alt="alt"/> 
                                 </td>
+                                <!--Name-->
                                 <td>${cart.value.product.name}</td>
-                                <td>${cart.value.quantity}</td>
+
+                                <!--Quantity-->
+                                <td>
+                                    <form action="order-update" method ="GET">
+                                        <input type="hidden"
+                                               name="productID" 
+                                               value="${cart.value.product.id}" />
+                                        <input onchange="this.form.submit()" 
+                                               type="number"
+                                               min ="1"
+                                               name="quantity"
+                                               value="${cart.value.quantity}" />
+                                    </form>
+                                </td>
+
+                                <!--Price-->
                                 <td>
                                     <fmt:formatNumber type="currency" value="${cart.value.product.price}">
-                                        
+
                                     </fmt:formatNumber>
                                 </td>
+
+                                <!--Amount-->
                                 <td>
                                     <fmt:formatNumber type="currency"
                                                       value="${cart.value.product.price * cart.value.quantity}"
                                                       maxFractionDigits="2">
                                     </fmt:formatNumber>
                                 </td>
+
+                                <!--Delete action-->
                                 <td>
-                                    <!--Delete action-->
                                     <a href="order-delete?productID=${cart.key}">
                                         <i class="fa-solid fa-trash fa-2x text-danger"></i>
                                     </a> 
                                 </td>
-                                <td>
-                                    <!--Update Action-->
-                                    <a href="order-update?productID=${cart.key}">
-                                        <i class="fa-solid fa-pencil fa-2x text-success"></i>
-                                    </a>
-                                </td>
                             </tr>
 
                         </c:forEach>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <h3>Total Money</h3>
-                                </td>
-                                <td colspan="3"></td>
-                                <td>
-                                    <h3>
-                                        <fmt:formatNumber type="currency"
+                        <tr>
+                            <td></td>
+                            <td>
+                                <h3>Total Money</h3>
+                            </td>
+                            <td colspan="3"></td>
+                            <td>
+                                <h3>
+                                    <fmt:formatNumber type="currency"
                                                       value="${requestScope.totalMoney}"
                                                       maxFractionDigits="2">
                                     </fmt:formatNumber>
-                                    </h3>
-                                </td>
-                            </tr>
+                                </h3>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </c:if>
