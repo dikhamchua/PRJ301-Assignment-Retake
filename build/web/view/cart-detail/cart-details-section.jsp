@@ -16,8 +16,7 @@
     <body>
         <section id="cart-details">
             <!--Shopping cart empty-->
-            <c:if test="${sessionScope.cartHashMap.size() == 0 ||
-                          sessionScope.cartHashMap eq null}">
+            <c:if test="${sessionScope.cartHashMap.size() == 0 }">
                   <h1>Shopping Cart Is Empty</h1>
             </c:if>
 

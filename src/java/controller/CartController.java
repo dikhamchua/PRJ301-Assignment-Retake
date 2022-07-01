@@ -37,13 +37,14 @@ public class CartController extends HttpServlet {
         if (cartHashMap == null) {
             cartHashMap = new LinkedHashMap<>();
         }
-        
+        System.out.println(cartHashMap.size());
         double totalMoney = 0;
         for (Map.Entry<Integer, Order> entry : cartHashMap.entrySet()) {
             Order order = entry.getValue();
             totalMoney += order.getQuantity() * order.getProduct().getPrice();
         }
         
+        session.setAttribute("cartHashMap",cartHashMap );
         request.setAttribute("totalMoney", totalMoney);
         request.getRequestDispatcher("view/cart-detail/cart.jsp").forward(request, response);
     } 
