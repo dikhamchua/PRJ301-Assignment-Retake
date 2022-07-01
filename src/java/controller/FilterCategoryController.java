@@ -13,6 +13,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import model.Product;
 
 /**
  *
@@ -34,13 +37,14 @@ public class FilterCategoryController extends HttpServlet {
         
         //get categoryID
         int categoryID = Integer.parseInt(request.getParameter("categoryId"));
-        productDAO.getProductsByCategoryID(categoryID);
-        
+        List<Product> listProducts =  productDAO.getProductsByCategoryID(categoryID);
+        System.out.println(listProducts.size());
         //get listProduct through categoryID
+        HttpSession session = request.getSession();
         
-        request.setAttribute("listProducts", productDAO.getListProducts());
-        request.setAttribute("listCategories", categoryDAO.getListCategories());
-        request.getRequestDispatcher("view/index.jsp").forward(request, response);
+        session.setAttribute("listProducts", listProducts);
+        session.setAttribute("listCategories", categoryDAO.getListCategories());
+        request.getRequestDispatcher("pageController").forward(request, response);
     } 
 
 

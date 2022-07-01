@@ -92,8 +92,9 @@ public class ProductDAO extends DBContext {
         return null;
     }
 
-    public void getProductsByCategoryID(int categoryID) {
-
+    public List<Product> getProductsByCategoryID(int categoryID) {
+        List<Product> listProductByCategory = new ArrayList<>();
+        
         String sql = "select * from Product\n"
                 + "where category_id = ? ";
         try {
@@ -112,13 +113,14 @@ public class ProductDAO extends DBContext {
                         createdDate(resultSet.getString(7)).
                         categoryId(resultSet.getInt(8)).
                         build();
-                listProducts.add(product);
+                listProductByCategory.add(product);
             }
         } catch (Exception e) {
             System.out.println("=========================");
             System.out.println("get Products by categoryID in ProductDAO class: " + e.getMessage());
             System.out.println("=========================");
         }
+        return listProductByCategory;
     }
 
     public List<Product> getProductsByKeyword(String keyword) {
