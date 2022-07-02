@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.HashMap;
-import model.Order;
+import model.Cart;
 
 /**
  *
@@ -31,7 +31,7 @@ public class OrderDeleteController extends HttpServlet {
         //prepare
         HttpSession session = request.getSession();
         ProductDAO productDAO = new ProductDAO();
-        HashMap<Integer,Order> cartHashMap = (HashMap<Integer,Order>) session.getAttribute("cartHashMap");
+        HashMap<Integer,Cart> cartHashMap = (HashMap<Integer,Cart>) session.getAttribute("cartHashMap");
         
         int productID = Integer.parseInt(request.getParameter("productID"));
         cartHashMap.remove(productID);

@@ -23,7 +23,7 @@
             <!--Shopping cart have order-->
             <c:if test="${sessionScope.cartHashMap.size() != 0}">
                 <h1>Shopping Cart</h1>
-                <table class="table ">
+                <table class="table table-hover">
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">No</th>
@@ -103,6 +103,10 @@
                         </tr>
                     </tbody>
                 </table>
+                <a class="btn btn-info btn-lg text-white" href="check-out">
+                    Check Out
+                </a>
+                    
             </c:if>
 
         </section>

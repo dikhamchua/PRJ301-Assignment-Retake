@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import model.Order;
+import model.Cart;
 
 /**
  *
@@ -33,14 +33,14 @@ public class CartController extends HttpServlet {
         HttpSession session = request.getSession();
         
         //get cart hashmap 
-        HashMap<Integer, Order> cartHashMap = (HashMap<Integer, Order>) session.getAttribute("cartHashMap");
+        HashMap<Integer, Cart> cartHashMap = (HashMap<Integer, Cart>) session.getAttribute("cartHashMap");
         if (cartHashMap == null) {
             cartHashMap = new LinkedHashMap<>();
         }
         System.out.println(cartHashMap.size());
         double totalMoney = 0;
-        for (Map.Entry<Integer, Order> entry : cartHashMap.entrySet()) {
-            Order order = entry.getValue();
+        for (Map.Entry<Integer, Cart> entry : cartHashMap.entrySet()) {
+            Cart order = entry.getValue();
             totalMoney += order.getQuantity() * order.getProduct().getPrice();
         }
         

@@ -13,16 +13,15 @@ import lombok.ToString;
  *
  * @author PHAM KHAC VINH
  */
-
 @Builder
 @Getter
 @Setter
 @ToString
-public class Order {
+
+public class Shipping {
     private int id;
-    private int accountId;
-    private double totalPrice;
-    private String note;
-    private String createdDate;
-    private int shippingId;
+    private String name;
+    private String phone;
+    private String address;
+    
 }

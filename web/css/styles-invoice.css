@@ -47,13 +47,11 @@
 #product .list-group {
     padding-top: 17%;
 }
-/* Footer */
-#footer {
-    padding: 7% 15%;
-    background-color: #000;
-    text-align: center;
-}
 
-#footer p {
-    color: #fff;
+.form-customer {
+    margin: 5% 0 5%;
+}
+.customer-info{
+    border:1px solid #ccc;
+    border-radius: 1rem;
 }
