@@ -100,34 +100,51 @@
 
                         <!--Customer information-->
                         <div class="col-xl-4 text-left customer-info">
-                            <form class="form-customer" action="check-out" method="POST">
+                            <form class="form-customer" action="check-out" method="POST" id="form-1">
                                 <h1>Information Of Customer</h1>
                                 <!--Name Customer-->
-                                <label for="inputName">Name</label>
-                                <input type="text" class="form-control"
-                                       name="nameCustomer"
-                                       id="inputName" 
-                                       placeholder="Enter name">
+                                <div class="form-group">
+                                    <label for="inputName">Name</label>
+                                    <input type="text" class="form-control"
+                                           name="nameCustomer"
+                                           id="inputName" 
+                                           placeholder="Enter name">
+                                    <span class="form-message"></span>
+
+                                </div>
                                 <!--Phone-->
-                                <label for="inputPhone">Phone</label>
-                                <input type="text"
-                                       name="phoneCustomer"
-                                       class="form-control"
-                                       id="inputPhone" 
-                                       placeholder="Enter phone">
-                                <!--Address-->
-                                <label for="inputAddress">Address</label>
-                                <input type="text" class="form-control"
-                                       name="addressCustomer"
-                                       id="inputAddress" 
-                                       placeholder="Enter address">
+                                <div class="form-group">
+                                    <label for="inputPhone">Phone</label>
+                                    <input type="text"
+                                           name="phoneCustomer"
+                                           class="form-control"
+                                           id="inputPhone" 
+                                           placeholder="Enter phone">
+                                    <span class="form-message"></span>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <!--Address-->
+                                    <label for="inputAddress">Address</label>
+                                    <input type="text" class="form-control"
+                                           name="addressCustomer"
+                                           id="inputAddress" 
+                                           placeholder="Enter address">
+                                    <span class="form-message"></span>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputNote">Note</label>
+                                    <textarea class="form-control"
+                                              name="noteCustomer"
+                                              id="inputNote"
+                                              rows="3"></textarea>
+                                    <span class="form-message"></span>
+
+                                </div>
                                 <!--Note-->
-                                <label for="inputNote">Note</label>
-                                <textarea class="form-control"
-                                          name="noteCustomer"
-                                          id="inputNote"
-                                          rows="3"></textarea>
-                                <button type="submit" class="btn btn-primary customer-submit">
+                                <button type="submit" class="btn btn-primary btn-lg text-light">
                                     Submit
                                 </button>
                             </form>

@@ -6,8 +6,6 @@
     padding: 0 7% 0;
 }
 
-
-
 /* Shopping Cart Details */
 #cart-details {
     padding: 5% 8% 5%;
@@ -19,39 +17,13 @@
 }
 
 
-/* Product item */
-#product-item {
-    padding: 5% 8% 5%;
-    
-}
-
-#product-item .product-cart {
-    padding-top: 20%;
-}
-
-#product-item .discription{
-    margin-top: 5%;
-}
-
-/* Related items */
-#related-items{
-    background-color: #f8f9fa;
-    padding: 0 7% 0;
-
-}
-
-#related-items h2 {
-    padding: 3% 0 3%;
-}
-
-#product .list-group {
-    padding-top: 17%;
-}
-
 .form-customer {
-    margin: 5% 0 5%;
+    margin: 5% 0 0;
 }
 .customer-info{
     border:1px solid #ccc;
     border-radius: 1rem;
+}
+.form-message {
+    color: red;
 }
