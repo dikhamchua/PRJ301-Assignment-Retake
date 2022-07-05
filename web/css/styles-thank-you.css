@@ -1,0 +1,79 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : Jul 4, 2022, 6:13:34 PM
+    Author     : PHAM KHAC VINH
+*/
+
+body{
+    font-family: 'Ubuntu', sans-serif;
+    background-color: rgba(247,247,255,255);
+}
+
+
+#thank-you-section h1 {
+     font-size: 5rem;
+}
+
+#thank-you-section p {
+    font-size: 1.5rem;
+}
+
+#thank-you-section a {
+    font-size: 1.5rem;
+}
+
+.btn {
+    border-radius: 20px;
+}
+
+
+
+/* Navigation Bar */
+
+#navigation-bar {
+    background-color: #f8f9fa;
+    padding: 0 7% 0;
+}
+
+
+/* Header */
+#header{
+    background: #000;
+    text-align: center;
+}
+
+#header h1 {
+    color: #fff;
+}
+
+#header p {
+    padding-top: 1rem;
+    color: #72848f;
+}
+
+#header .container-fluid {
+    padding: 3% 0 5%;
+}
+
+/* Product */
+#product .row {
+    padding: 3% 10% 3%;
+}
+
+
+#product .list-group {
+    padding-top: 17%;
+}
+/* Footer */
+#footer {
+    padding: 7% 15%;
+    background-color: #000;
+    text-align: center;
+}
+
+#footer p {
+    color: #fff;
+}

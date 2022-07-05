@@ -53,7 +53,9 @@
                             <span class="badge bg-dark text-white mr-auto rounded-pill">${sessionScope.cartHashMap.size()}</span>
                         </a>
 
-                        <button class="btn btn-outline-primary ml-2">Login</button>
+                        <a class="btn btn-outline-primary ml-2" href="login">
+                            Login
+                        </a>
                     </div>
 
                 </nav>

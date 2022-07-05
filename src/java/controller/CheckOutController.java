@@ -4,6 +4,9 @@
  */
 package controller;
 
+import dao.OrderDAO;
+import dao.OrderDetailsDAO;
+import dao.ShippingDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,6 +18,10 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import model.Cart;
+import model.Order;
+import model.OrderDetails;
+import model.Product;
+import model.Shipping;
 
 /**
  *
@@ -47,34 +54,43 @@ public class CheckOutController extends HttpServlet {
         String phone = request.getParameter("phoneCustomer");
         String address = request.getParameter("addressCustomer");
         String note = request.getParameter("addressCustomer");
-        //validate phone and name
-        String nameError = "";
-        String phoneError = "";
-        if (nameError.matches("[a-zA-Z ]+") == false) {
-            nameError = "Name must be letter";
-        }
-        if (phoneError.matches("\\d{10}") == false) {
-            phoneError = "Phone must be digits and have 10 numbers";
+        
+        //get cart and total money
+        
+        HttpSession session = request.getSession();
+        //calculate total
+        //get cart hashmap 
+        HashMap<Integer, Cart> cartHashMap = (HashMap<Integer, Cart>) session.getAttribute("cartHashMap");
+        if (cartHashMap == null) {
+            cartHashMap = new LinkedHashMap<>();
         }
 
-        //if nameError or phone error => respone check - out controller
-        if (nameError.isEmpty() || phoneError.isEmpty()) {
-            request.setAttribute("nameError", nameError);
-            request.setAttribute("nameError", phoneError);
-            //prepare
-            HttpSession session = request.getSession();
-            //calculate total
-            //get cart hashmap 
-            HashMap<Integer, Cart> cartHashMap = (HashMap<Integer, Cart>) session.getAttribute("cartHashMap");
-            if (cartHashMap == null) {
-                cartHashMap = new LinkedHashMap<>();
-            }
-
-            double totalMoney = calculateTotalMoney(request, cartHashMap);
-            session.setAttribute("cartHashMap", cartHashMap);
-            request.setAttribute("totalMoney", totalMoney);
-            request.getRequestDispatcher("view/check-out/check-out.jsp").forward(request, response);
+        double totalMoney = calculateTotalMoney(request, cartHashMap);
+        
+        
+        //save to database
+        //save shipping
+        Shipping shipping  = Shipping.builder().name(name).phone(phone).address(address).build();
+        int shippingID =  new ShippingDAO().saveShipping(shipping);
+        //save Order
+        Order order  = Order.builder().accountId(1).totalPrice(totalMoney).note(note).shippingId(shippingID).build();
+        int orderID = new OrderDAO().saveOrder(order);
+        //save OrderDetail
+        OrderDetailsDAO orderDetailsDAO = new OrderDetailsDAO();
+        for (Map.Entry<Integer, Cart> entry : cartHashMap.entrySet()) {
+            int key = entry.getKey();
+            Cart value = entry.getValue();
+            Product product =value.getProduct();
+            OrderDetails orderDetails = OrderDetails.builder().orderId(orderID)
+                    .productName(product.getName())
+                    .productImage(product.getImageUrl())
+                    .productPrice(product.getPrice())
+                    .quantity(value.getQuantity()).build();
+            orderDetailsDAO.saveOrderDetails(orderDetails);
         }
+        
+        session.removeAttribute("cartHashMap");
+        request.getRequestDispatcher("view/check-out/thank-you.jsp").forward(request, response);
 
     }
 

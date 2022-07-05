@@ -18,8 +18,7 @@ import model.Product;
 public class ProductDAO extends DBContext {
 
     List<Product> listProducts;
-    public PreparedStatement statement;
-    public ResultSet resultSet;
+   
 
     public ProductDAO() {
         listProducts = new ArrayList<>();

@@ -8,7 +8,7 @@
 
 /* Shopping Cart Details */
 #cart-details {
-    padding: 5% 8% 5%;
+    padding: 5% 8% 8%;
     text-align: center;
 }
 
@@ -16,13 +16,19 @@
     padding: 0 0 5%;
 }
 
-
 .form-customer {
     margin: 5% 0 0;
 }
 .customer-info{
-    border:1px solid #ccc;
-    border-radius: 1rem;
+    position: relative;
+    left :3%;
+    bottom: 5rem;
+    padding: 32px 24px;
+    text-align: center;
+    background: #fff;
+    border-radius: 2px;
+    align-self: center;
+    box-shadow: 0 2px 5px 0 rgba(51,62,73,.1);
 }
 .form-message {
     color: red;

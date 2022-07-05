@@ -6,6 +6,8 @@ package context;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -16,6 +18,9 @@ public class DBContext {
 
     protected Connection connection;
     protected String error;
+    protected PreparedStatement statement;
+    protected ResultSet resultSet;
+
     public DBContext() {
         try {
             // Edit URL,username,password to authenticate with your MS SQL Server
@@ -36,6 +41,5 @@ public class DBContext {
     public String getError() {
         return error;
     }
-    
-    
+
 }

@@ -141,12 +141,10 @@
                                               id="inputNote"
                                               rows="3"></textarea>
                                     <span class="form-message"></span>
-
                                 </div>
                                 <!--Note-->
-                                <button type="submit" class="btn btn-primary btn-lg text-light">
-                                    Submit
-                                </button>
+                                <input type="submit" class="btn btn-primary btn-block text-light" value="Submit">
+                                </input>
                             </form>
                         </div>
                     </div>

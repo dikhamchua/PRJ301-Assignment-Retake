@@ -57,11 +57,8 @@
                     Validator.isRequired('#inputName', 'Enter your name'),
                     Validator.isRequired('#inputAddress', 'Enter your address'),
                     Validator.isPhone('#inputPhone'),
-                ],
-                onSubmit: function (data) {
-                    // Call API
-                    console.log(data);
-                }
+                ]
+                
             });
         });
 
