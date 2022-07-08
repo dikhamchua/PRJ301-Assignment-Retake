@@ -26,7 +26,7 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item"> <a href="/Shopping_Testing_2/home" class="nav-link">Home</a> </li>
+                            <li class="nav-item"> <a href="search?keyword="" class="nav-link">Home</a> </li>
                             <li class="nav-item"><a href="home" class="nav-link">About</a></li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"

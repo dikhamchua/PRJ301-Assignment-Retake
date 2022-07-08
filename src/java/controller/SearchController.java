@@ -35,7 +35,7 @@ public class SearchController extends HttpServlet {
         List<Product> listProduct = productDAO.getProductsByKeyword(keyword);
         HttpSession session = request.getSession();
         session.setAttribute("listProducts", listProduct);
-        request.getRequestDispatcher("home").forward(request, response);
+        response.sendRedirect("home");
     } 
 
 
