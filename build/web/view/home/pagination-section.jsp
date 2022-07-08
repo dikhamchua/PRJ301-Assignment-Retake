@@ -15,28 +15,28 @@
     <body>
         <section id="page-navigation" class="d-flex justify-content-center">
             <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="pageController?page=${page-page+1}">Home</a></li>
-                <li class="page-item" ><a class="page-link" href="pageController?page=${page-1}">Previous</a></li>
-                <li class="page-item active"><a class="page-link" href="pageController?page=${page}">${page}</a></li>
+                <li class="page-item"><a class="page-link" href="home?page=${page-page+1}">Home</a></li>
+                <li class="page-item" ><a class="page-link" href="home?page=${page-1}">Previous</a></li>
+                <li class="page-item active"><a class="page-link" href="home?page=${page}">${page}</a></li>
 
                 <c:if test="${page+1 <= numberPage}" >
                     <li class="page-item">
-                        <a class="page-link" href="pageController?page=${page+1}">${page + 1}</a>
+                        <a class="page-link" href="home?page=${page+1}">${page + 1}</a>
                     </li>
                 </c:if>
                 <c:if test="${page+2 <= numberPage}" >
                     <li class="page-item">
-                        <a class="page-link" href="pageController?page=${page+2}">${page + 2}</a>
+                        <a class="page-link" href="home?page=${page+2}">${page + 2}</a>
                     </li>
                 </c:if>
                 <c:if test="${page+1 <= numberPage}" >
                     <li class="page-item">
-                        <a class="page-link" href="pageController?page=${page+1}">Next</a>
+                        <a class="page-link" href="home?page=${page+1}">Next</a>
                     </li>
                 </c:if>
                 <c:if test="${page+1 <= numberPage}" >
                     <li class="page-item">
-                        <a class="page-link" href="pageController?page=${numberPage}">Last</a>
+                        <a class="page-link" href="home?page=${numberPage}">Last</a>
                     </li>
                 </c:if>
             </ul>

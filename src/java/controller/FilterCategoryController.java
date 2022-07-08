@@ -44,7 +44,7 @@ public class FilterCategoryController extends HttpServlet {
         
         session.setAttribute("listProducts", listProducts);
         session.setAttribute("listCategories", categoryDAO.getListCategories());
-        request.getRequestDispatcher("pageController").forward(request, response);
+        request.getRequestDispatcher("home").forward(request, response);
     } 
 
 

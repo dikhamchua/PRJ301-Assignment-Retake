@@ -14,7 +14,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
+import model.PageControl;
 import model.Product;
+import utils.IConstant;
 
 /**
  *
@@ -36,12 +38,44 @@ public class HomeController extends HttpServlet {
         
         HttpSession session = request.getSession();
         
+//        //get list product
+//        List<Product> listProduct = (List<Product>) session.getAttribute("listProducts");
+        
         //get list product
         List<Product> listProduct = (List<Product>) session.getAttribute("listProducts");
+        if (listProduct == null) {
+            listProduct = productDAO.getListProducts();
+        }
+
+
+        int nrpp = IConstant.NUMBER_RECORD_PPAGE;
+        int sizeListProduct = listProduct.size();
+        int numberPage = getNumberPage(sizeListProduct, nrpp);
+        //pagination
+        int currentPage = getCurrentPage(request, numberPage);
+
+        int begin = (currentPage - 1) * nrpp;
+        int end = (currentPage) * nrpp > sizeListProduct
+                ? sizeListProduct : (currentPage) * nrpp - 1;
+
+        PageControl pageControl = PageControl.builder().
+                numberRecordPerPage(nrpp).
+                currentPage(currentPage).
+                sizeOfList(sizeListProduct).
+                numberPage(numberPage).
+                begin(begin).
+                end(end).build();
+
+        session.setAttribute("listProducts", listProduct);
+        request.setAttribute("numberPage", numberPage);
+        request.setAttribute("pageControl", pageControl);
+        request.setAttribute("page", currentPage);
+
         
         session.setAttribute("listProducts", listProduct);
         session.setAttribute("listCategories", categoryDAO.getListCategories());
-        request.getRequestDispatcher("pageController").forward(request, response);
+        request.getRequestDispatcher("view/home/index.jsp").forward(request, response);
+//        request.getRequestDispatcher("pageController").forward(request, response);
     }
 
     @Override

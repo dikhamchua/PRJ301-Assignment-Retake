@@ -171,7 +171,7 @@ Validator.minLength = function (selector, min, message) {
     return {
         selector: selector,
         test: function (value) {
-            return value.length >= min ? undefined :  message || `Vui lòng nhập tối thiểu ${min} kí tự`;
+            return value.length >= min ? undefined :  message || `Please input at least ${min} character`;
         }
     };
 }

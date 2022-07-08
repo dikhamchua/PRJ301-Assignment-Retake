@@ -40,22 +40,36 @@
                                 </ul>
                             </li>
                         </ul>
-
+                        <!--Button Search-->
                         <nav class="navbar navbar-light bg-light pl-sm-0">
                             <form action="search" class="form-inline">
                                 <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
                                 <button class="btn btn-outline-success my-2 my-sm-0 ml-sm-0" type="submit">Search</button>
                             </form>
                         </nav>
+                        <!--Button Cart-->
                         <a class="btn btn-outline-dark" type="submit" href="cart">
                             <i class="fa-solid fa-cart-shopping"></i>
                             Cart
                             <span class="badge bg-dark text-white mr-auto rounded-pill">${sessionScope.cartHashMap.size()}</span>
                         </a>
 
-                        <a class="btn btn-outline-primary ml-2" href="login">
-                            Login
-                        </a>
+                        <!--Button Login-->
+                        <c:choose>
+                            <c:when test="${sessionScope.account != null}">
+                                <a class="btn btn-outline-primary ml-2" href="login">
+                                    ${account.displayName}
+                                </a>
+                                <a class="btn btn-outline-primary ml-2" href="logout">
+                                    Logout
+                                </a>
+                            </c:when>
+                            <c:otherwise>
+                                <a class="btn btn-outline-primary ml-2" href="login">
+                                    Login
+                                </a>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
 
                 </nav>
