@@ -36,7 +36,7 @@ public class AccountDAO extends DBContext {
                 String address = resultSet.getString(5);
                 String email = resultSet.getString(6);
                 String phone = resultSet.getString(7);
-                
+                int role = resultSet.getInt(8);
                 Account result = Account.builder()
                         .id(id)
                         .username(username)
@@ -45,6 +45,7 @@ public class AccountDAO extends DBContext {
                         .address(address)
                         .email(email)
                         .phone(phone)
+                        .role(role)
                         .build();
                 return result;
             }

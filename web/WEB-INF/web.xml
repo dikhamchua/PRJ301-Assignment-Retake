@@ -4,63 +4,80 @@
         <filter-name>FilterAuthentication</filter-name>
         <filter-class>filter.FilterAuthentication</filter-class>
     </filter>
+    <filter>
+        <filter-name>FilterAuthorization</filter-name>
+        <filter-class>filter.FilterAuthorization</filter-class>
+    </filter>
+    
     <filter-mapping>
         <filter-name>FilterAuthentication</filter-name>
         <url-pattern>/add-cart</url-pattern>
-        <url-pattern>/cart</url-pattern>
         <url-pattern>/order-delete</url-pattern>
-        <url-pattern>/cart-update</url-pattern>
         <url-pattern>/order-update</url-pattern>
+        <url-pattern>/cart-update</url-pattern>
+        <url-pattern>/cart</url-pattern>
         <url-pattern>/check-out</url-pattern>
         <url-pattern>/logout</url-pattern>
+        <url-pattern>/admin/*</url-pattern>
+        
     </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>FilterAuthorization</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+    
     <servlet>
         <servlet-name>HomeController</servlet-name>
-        <servlet-class>controller.HomeController</servlet-class>
+        <servlet-class>controller.web.HomeController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>FilterCategory</servlet-name>
-        <servlet-class>controller.FilterCategoryController</servlet-class>
+        <servlet-class>controller.web.FilterCategoryController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchController</servlet-name>
-        <servlet-class>controller.SearchController</servlet-class>
+        <servlet-class>controller.web.SearchController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ProductDetailController</servlet-name>
-        <servlet-class>controller.ProductDetailController</servlet-class>
+        <servlet-class>controller.web.ProductDetailController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddCartController</servlet-name>
-        <servlet-class>controller.AddCartController</servlet-class>
+        <servlet-class>controller.web.AddCartController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CartController</servlet-name>
-        <servlet-class>controller.CartController</servlet-class>
+        <servlet-class>controller.web.CartController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>OrderDeleteController</servlet-name>
-        <servlet-class>controller.OrderDeleteController</servlet-class>
+        <servlet-class>controller.web.OrderDeleteController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CartUpdateController</servlet-name>
-        <servlet-class>controller.CartUpdateController</servlet-class>
+        <servlet-class>controller.web.CartUpdateController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>OrderUpdateController</servlet-name>
-        <servlet-class>controller.OrderUpdateController</servlet-class>
+        <servlet-class>controller.web.OrderUpdateController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CheckOutController</servlet-name>
-        <servlet-class>controller.CheckOutController</servlet-class>
+        <servlet-class>controller.web.CheckOutController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginController</servlet-name>
-        <servlet-class>controller.LoginController</servlet-class>
+        <servlet-class>controller.web.LoginController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogOutController</servlet-name>
-        <servlet-class>controller.LogOutController</servlet-class>
+        <servlet-class>controller.web.LogOutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomeAdminController</servlet-name>
+        <servlet-class>controller.admin.HomeAdminController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -109,6 +126,10 @@
     <servlet-mapping>
         <servlet-name>LogOutController</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeAdminController</servlet-name>
+        <url-pattern>/admin/home</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

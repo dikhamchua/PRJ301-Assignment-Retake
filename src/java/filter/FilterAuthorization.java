@@ -15,17 +15,17 @@ import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Account;
+import utils.IConstant;
 
 /**
  *
  * @author PHAM KHAC VINH
  */
-public class FilterAuthentication implements Filter {
+public class FilterAuthorization implements Filter {
 
     private static final boolean debug = true;
 
@@ -34,13 +34,13 @@ public class FilterAuthentication implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
 
-    public FilterAuthentication() {
+    public FilterAuthorization() {
     }
 
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("FilterAuthentication:DoBeforeProcessing");
+            log("FilterAuthorization:DoBeforeProcessing");
         }
 
         // Write code here to process the request and/or response before
@@ -68,7 +68,7 @@ public class FilterAuthentication implements Filter {
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("FilterAuthentication:DoAfterProcessing");
+            log("FilterAuthorization:DoAfterProcessing");
         }
 
         // Write code here to process the request and/or response after
@@ -103,54 +103,26 @@ public class FilterAuthentication implements Filter {
             FilterChain chain)
             throws IOException, ServletException {
 
-        doBeforeProcessing(request, response);
-
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
-
         HttpSession session = req.getSession();
-        // Kiểm tra đăng nhập
+
         Account account = (Account) session.getAttribute("account");
-
         if (account != null) {
-            chain.doFilter(request, response);
-        } else {
-            Cookie[] cookies = req.getCookies();
-            String username = null;
-            String password = null;
-
-            for (Cookie cooky : cookies) {
-                if (cooky.getName().equals("username")) {
-                    username = cooky.getValue();
-                }
-                if (cooky.getName().equals("password")) {
-                    password = cooky.getValue();
-                }
-                if (username != null && password != null) {
-                    break;
-                }
-            }
-            if (username != null && password != null) {
-                Account login = Account.builder().username(username).password(password).build();
-                Account accountLogin = new AccountDAO().getAccount(login);
-                if (accountLogin != null) {// cookie hop lê
-                    session.setAttribute("account", accountLogin);
-                    chain.doFilter(request, response);
-                    return;
-                }
-            }
-//            res.sendRedirect("../login");
-                req.getRequestDispatcher("../login").forward(request, response);
+            if (account.getRole() == IConstant.roleAdmin) {
+                chain.doFilter(request, response);
+                return;
+            } 
         }
+        res.sendRedirect("../login");
+        //get session
+
+        //if account != null and role = 1 => chain filter
+        // else => login
     }
 
     /**
      * Return the filter configuration object for this filter.
-     */
-    /**
-     * Return the filter configuration object for this filter.
-     *
-     * @return
      */
     public FilterConfig getFilterConfig() {
         return (this.filterConfig);
@@ -178,7 +150,7 @@ public class FilterAuthentication implements Filter {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
             if (debug) {
-                log("FilterAuthentication:Initializing filter");
+                log("FilterAuthorization:Initializing filter");
             }
         }
     }
@@ -189,9 +161,9 @@ public class FilterAuthentication implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("FilterAuthentication()");
+            return ("FilterAuthorization()");
         }
-        StringBuffer sb = new StringBuffer("FilterAuthentication(");
+        StringBuffer sb = new StringBuffer("FilterAuthorization(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());
