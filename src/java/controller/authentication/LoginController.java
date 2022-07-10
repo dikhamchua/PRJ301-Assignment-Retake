@@ -2,19 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.web;
+package controller.authentication;
 
 import dao.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.net.HttpCookie;
 import model.Account;
+import utils.IConstant;
 
 /**
  *
@@ -41,6 +42,7 @@ public class LoginController extends HttpServlet {
                 break;
             }
         }
+        
         Account account = Account.builder().username(username).password(password).build();
         AccountDAO dao = new AccountDAO();
         Account accountExist = dao.getAccount(account);
@@ -77,9 +79,13 @@ public class LoginController extends HttpServlet {
 
             response.addCookie(usernameCookie);
             response.addCookie(passwordcCookie);
-
+            
             session.setAttribute("account", accountExist);
-            response.sendRedirect("home");
+            if (accountExist.getRole() == IConstant.roleAdmin) {
+                response.sendRedirect("admin/home");
+            }else {
+                response.sendRedirect("home");
+            }
         }
 
     }

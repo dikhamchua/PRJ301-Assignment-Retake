@@ -59,7 +59,7 @@
                             <a class="btn btn-outline-primary ml-2" href="login">
                                 DisplayName
                             </a>
-                            <a class="btn btn-outline-primary ml-2" href="logout">
+                            <a class="btn btn-outline-primary ml-2" href="../logout">
                                 Logout
                             </a>
                         </c:when>

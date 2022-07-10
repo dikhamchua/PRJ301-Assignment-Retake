@@ -8,7 +8,6 @@
         <filter-name>FilterAuthorization</filter-name>
         <filter-class>filter.FilterAuthorization</filter-class>
     </filter>
-    
     <filter-mapping>
         <filter-name>FilterAuthentication</filter-name>
         <url-pattern>/add-cart</url-pattern>
@@ -21,12 +20,10 @@
         <url-pattern>/admin/*</url-pattern>
         
     </filter-mapping>
-    
     <filter-mapping>
         <filter-name>FilterAuthorization</filter-name>
         <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
-    
     <servlet>
         <servlet-name>HomeController</servlet-name>
         <servlet-class>controller.web.HomeController</servlet-class>
@@ -69,11 +66,11 @@
     </servlet>
     <servlet>
         <servlet-name>LoginController</servlet-name>
-        <servlet-class>controller.web.LoginController</servlet-class>
+        <servlet-class>controller.authentication.LoginController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogOutController</servlet-name>
-        <servlet-class>controller.web.LogOutController</servlet-class>
+        <servlet-class>controller.authentication.LogOutController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>HomeAdminController</servlet-name>
