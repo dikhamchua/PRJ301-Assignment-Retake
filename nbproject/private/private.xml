@@ -8,6 +8,9 @@
             <file>file:/C:/Users/PHAM%20KHAC%20VINH/OneDrive%20-%20vinhdeptrai/Netbeans%20Workspace/PRJ301-Mentor/Shopping_Testing_2/web/view/cart-detail/cart-details-section.jsp</file>
             <file>file:/C:/Users/PHAM%20KHAC%20VINH/OneDrive%20-%20vinhdeptrai/Netbeans%20Workspace/PRJ301-Mentor/Shopping_Testing_2/web/view/cart-detail/cart.jsp</file>
         </group>
-        <group name="PRJ301-Mentor"/>
+        <group name="PRJ301-Mentor">
+            <file>file:/C:/Users/PHAM%20KHAC%20VINH/OneDrive%20-%20vinhdeptrai/Netbeans%20Workspace/PRJ301-Mentor/PRJ301-Assignment-Retake/web/view/admin/home/navigation-section-admin.jsp</file>
+            <file>file:/C:/Users/PHAM%20KHAC%20VINH/OneDrive%20-%20vinhdeptrai/Netbeans%20Workspace/PRJ301-Mentor/PRJ301-Assignment-Retake/src/java/controller/admin/HomeAdminController.java</file>
+        </group>
     </open-files>
 </project-private>

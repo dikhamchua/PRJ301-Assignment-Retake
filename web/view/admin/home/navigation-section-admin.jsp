@@ -47,7 +47,7 @@
                         </form>
                     </nav>
                     <!--Button Cart-->
-                    <a class="btn btn-outline-dark" type="submit" href="cart">
+                    <a class="btn btn-outline-dark" type="submit" href="dashboard">
                         <i class="fa-solid fa-house-chimney-user"></i>
                         Dashboard
                         <span class="badge bg-dark text-white mr-auto rounded-pill"></span>
