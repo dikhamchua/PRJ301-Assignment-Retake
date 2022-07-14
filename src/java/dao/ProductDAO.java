@@ -7,8 +7,11 @@ package dao;
 import context.DBContext;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Product;
 
 /**
@@ -18,7 +21,6 @@ import model.Product;
 public class ProductDAO extends DBContext {
 
     List<Product> listProducts;
-   
 
     public ProductDAO() {
         listProducts = new ArrayList<>();
@@ -93,7 +95,7 @@ public class ProductDAO extends DBContext {
 
     public List<Product> getProductsByCategoryID(int categoryID) {
         List<Product> listProductByCategory = new ArrayList<>();
-        
+
         String sql = "select * from Product\n"
                 + "where category_id = ? ";
         try {
@@ -152,5 +154,22 @@ public class ProductDAO extends DBContext {
             System.out.println("=========================");
         }
         return listProduct;
+    }
+
+    public void updateQuantity(int productID, int quantityUpdate) {
+        String sql = "UPDATE [dbo].[Product]\n"
+                + "   SET [quantity] = ?\n"
+                + " WHERE id = ?";
+
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1,quantityUpdate);
+            statement.setInt(2, productID);
+            statement.executeUpdate();
+        } catch (Exception ex) {
+            System.out.println("=========================");
+            System.out.println("updateQuantity in ProductDAO class: " + ex.getMessage());
+            System.out.println("=========================");
+        }
     }
 }

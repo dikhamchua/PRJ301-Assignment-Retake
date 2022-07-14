@@ -14,20 +14,20 @@
     </head>
     <body>
         <!-- Navigation Bar -->
-    <section id="navigation-bar">
-        <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-light ">
-                <a href="#" class="navbar-brand">Start Bootstrap</a>
+    <section id="navigation-bar" class ="sticky-top bg-dark ">
+        <div class="container-fluid ">
+            <nav class="navbar navbar-expand-lg navbar-light  ">
+                <a href="#" class="navbar-brand text-white">Start Bootstrap</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
                     aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"> <a href="search?keyword=" class="nav-link">Home</a> </li>
-                        <li class="nav-item"><a href="home" class="nav-link">About</a></li>
+                        <li class="nav-item"> <a href="search?keyword=" class="nav-link text-white">Home</a> </li>
+                        <li class="nav-item"><a href="home" class="nav-link text-white">About</a></li>
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+                            <a href="#" class="nav-link dropdown-toggle text-white" id="navbarDropdownMenuLink"
                                 data-toggle="dropdown" aria-expanded="false">Download</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="#">All Products</a></li>
@@ -39,15 +39,15 @@
                         </li>
                     </ul>
                     <!--Button Search-->
-                    <nav class="navbar navbar-light bg-light pl-sm-0">
+                    <nav class="navbar navbar-light bg-light button-search mr-sm-2">
                         <form action="search" class="form-inline">
-                            <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search"
+                            <input class="form-control" name="keyword" type="search" placeholder="Search"
                                 aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0 ml-sm-0" type="submit">Search</button>
+                            <button class="btn btn-outline-light ml-sm-2 " type="submit">Search</button>
                         </form>
                     </nav>
                     <!--Button Cart-->
-                    <a class="btn btn-outline-dark" type="submit" href="dashboard">
+                    <a class="btn btn-outline-light " type="submit" href="dashboard">
                         <i class="fa-solid fa-house-chimney-user"></i>
                         Dashboard
                         <span class="badge bg-dark text-white mr-auto rounded-pill"></span>
@@ -64,7 +64,7 @@
                             </a>
                         </c:when>
                         <c:otherwise>
-                            <a class="btn btn-outline-primary ml-2" href="login">
+                            <a class="btn btn-outline-light ml-2" href="login">
                                 Login
                             </a>
                         </c:otherwise>
