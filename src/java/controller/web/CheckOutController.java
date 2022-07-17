@@ -6,7 +6,6 @@ package controller.web;
 
 import dao.OrderDAO;
 import dao.OrderDetailsDAO;
-import dao.ShippingDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,11 +16,12 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import model.Account;
 import model.Cart;
 import model.Order;
 import model.OrderDetails;
+import model.Price;
 import model.Product;
-import model.Shipping;
 
 /**
  *
@@ -32,6 +32,8 @@ public class CheckOutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset = UTF-8");
         //prepare
         HttpSession session = request.getSession();
         //calculate total
@@ -50,14 +52,16 @@ public class CheckOutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String name = request.getParameter("nameCustomer");
-        String phone = request.getParameter("phoneCustomer");
-        String address = request.getParameter("addressCustomer");
-        String note = request.getParameter("addressCustomer");
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset = UTF-8");
+        String note = request.getParameter("noteCustomer");
         
         //get cart and total money
         
         HttpSession session = request.getSession();
+        
+        //get account
+        Account account = (Account) session.getAttribute("account");
         //calculate total
         //get cart hashmap 
         HashMap<Integer, Cart> cartHashMap = (HashMap<Integer, Cart>) session.getAttribute("cartHashMap");
@@ -70,10 +74,10 @@ public class CheckOutController extends HttpServlet {
         
         //save to database
         //save shipping
-        Shipping shipping  = Shipping.builder().name(name).phone(phone).address(address).build();
-        int shippingID =  new ShippingDAO().saveShipping(shipping);
         //save Order
-        Order order  = Order.builder().accountId(1).totalPrice(totalMoney).note(note).shippingId(shippingID).build();
+        Order order  = Order.builder().accountId(account.getId()).
+                totalPrice(totalMoney).
+                note(note).build();
         int orderID = new OrderDAO().saveOrder(order);
         //save OrderDetail
         OrderDetailsDAO orderDetailsDAO = new OrderDetailsDAO();
@@ -81,12 +85,19 @@ public class CheckOutController extends HttpServlet {
             int key = entry.getKey();
             Cart value = entry.getValue();
             Product product =value.getProduct();
-            OrderDetails orderDetails = OrderDetails.builder().orderId(orderID)
-                    .productName(product.getName())
-                    .productImage(product.getImageUrl())
-                    .productPrice(product.getPrice())
-                    .quantity(value.getQuantity()).build();
-            orderDetailsDAO.saveOrderDetails(orderDetails);
+            Price price = Price.builder().
+                    id(product.getPrice().getId()).
+                    build();
+
+                OrderDetails orderDetail  = OrderDetails.builder()
+                        .orderId(orderID)
+                        .product(product)
+                        .price(price)
+                        .quantity(value.getQuantity())
+                        .build();
+                
+            
+            orderDetailsDAO.saveOrderDetails(orderDetail);
         }
         
         session.removeAttribute("cartHashMap");
@@ -129,7 +140,7 @@ public class CheckOutController extends HttpServlet {
         double totalMoney = 0;
         for (Map.Entry<Integer, Cart> entry : cartHashMap.entrySet()) {
             Cart order = entry.getValue();
-            totalMoney += order.getQuantity() * order.getProduct().getPrice();
+            totalMoney += order.getQuantity() * order.getProduct().getPrice().getPrice();
         }
         return totalMoney;
     }

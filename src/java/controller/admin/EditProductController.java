@@ -5,72 +5,123 @@
  */
 package controller.admin;
 
+import dao.ImageDAO;
+import dao.ProductDAO;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Paths;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import model.Image;
+import model.Product;
+import utils.IConstant;
 
 /**
  *
  * @author PHAM KHAC VINH
  */
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+        maxFileSize = 1024 * 1024 * 50, // 50MB
+        maxRequestSize = 1024 * 1024 * 50) // 50MB
 public class EditProductController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet EditProductController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet EditProductController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset = UTF-8");
+        ProductDAO productDAO = new ProductDAO();
+        //get Product by ID
+        int productId = Integer.parseInt(request.getParameter("productID"));
+        Product product = productDAO.getProductByID(productId);
+
+        request.setAttribute("product", product);
+
+        request.getRequestDispatcher("../view/admin/dashboard/edit-product.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset = UTF-8");
+        //get parameter
+        int idProduct = Integer.parseInt(request.getParameter("id"));
+        String nameProduct = request.getParameter("name");
+        double priceProduct = Double.parseDouble(request.getParameter("price"));
+        String descriptionProduct = request.getParameter("description");
+        int quantityProduct = Integer.parseInt(request.getParameter("quantity"));
+        int categoryId = Integer.parseInt(request.getParameter("categoryProduct"));
+
+        //prepare
+        ImageDAO imageDAO = new ImageDAO();
+        ProductDAO productDAO = new ProductDAO();
+
+        if (priceProduct < 0) {
+            priceProduct = 0;
+        }
+        if (quantityProduct < 0) {
+            quantityProduct = 0;
+        }
+
+        // Process the uploaded file and obtain the file upload field according to the name
+        Part profile = request.getPart("photo");
+        String filename = profile.getSubmittedFileName();
+        String url = "";
+        int idImage = 0;
+        Product product = productDAO.getProductByID(idProduct);
+        if (!filename.trim().isEmpty()) {
+            //write image to folder
+            //get image product
+            String uploadFolder = request.getServletContext().getRealPath(IConstant.FOLDER_PRODUCT);
+            String UPLOAD_DIRECTORY = Paths.get(uploadFolder).toString();
+            // Get the original file name of the uploaded file
+            InputStream inputStream = profile.getInputStream();
+            OutputStream outputStream = new FileOutputStream(UPLOAD_DIRECTORY + File.separator + filename);
+            byte[] bytes = new byte[1024];
+            int len = 0;
+            while ((len = inputStream.read(bytes)) != -1) {
+                outputStream.write(bytes, 0, len);
+                outputStream.flush();
+            }
+            outputStream.close();
+            inputStream.close();
+
+            //check image exist in database
+            url = IConstant.FOLDER_PRODUCT + "/" + filename;
+            Image imageInList = imageDAO.getImageBy(url);
+            if (imageInList == null) {
+                Image image = Image.builder().
+                        url(url)
+                        .build();
+                imageDAO.saveImage(image);
+                imageInList = imageDAO.getImageBy(url);
+            }
+            idImage = imageInList.getId();
+            //edit url of product
+        } else {
+            idImage = imageDAO.getImageBy(product.getImageUrl()).getId();
+        }
+
+//        Product productUpdate = Product.builder().
+//                id(idProduct).
+//                name(nameProduct).
+//                quantity(quantityProduct).
+//                price(priceProduct).
+//                description(descriptionProduct).
+//                imageUrl(url).
+//                categoryId(categoryId)
+//                .build();
+//
+//        productDAO.updateProduct(productUpdate, idImage);
+        request.getRequestDispatcher("search?keyword=").forward(request, response);
     }
 
     /**

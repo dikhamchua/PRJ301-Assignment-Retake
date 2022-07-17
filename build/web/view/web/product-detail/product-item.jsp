@@ -35,7 +35,7 @@
         <jsp:include page="product-details-section.jsp"></jsp:include>
 
             <!-- Related items section -->
-        <jsp:include page="related-item-section.jsp"></jsp:include>
+        <%--<jsp:include page="related-item-section.jsp"></jsp:include>--%>
 
             <!--Footer-->
         <jsp:include page="/decorate/footer-section.jsp"></jsp:include>

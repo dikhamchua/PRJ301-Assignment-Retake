@@ -28,6 +28,8 @@ public class OrderDeleteController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset = UTF-8");
         //prepare
         HttpSession session = request.getSession();
         ProductDAO productDAO = new ProductDAO();
@@ -43,6 +45,8 @@ public class OrderDeleteController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset = UTF-8");
         processRequest(request, response);
     }
 

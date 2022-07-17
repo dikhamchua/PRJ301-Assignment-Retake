@@ -33,7 +33,8 @@ public class SearchAdminController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset = UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -60,6 +61,8 @@ public class SearchAdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset = UTF-8");
         
         String keyword = request.getParameter("keyword");
         ProductDAO productDAO = new ProductDAO();
@@ -81,7 +84,15 @@ public class SearchAdminController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset = UTF-8");
+        String keyword = request.getParameter("keyword");
+        ProductDAO productDAO = new ProductDAO();
+        
+        List<Product> listProduct = productDAO.getProductsByKeyword(keyword);
+        HttpSession session = request.getSession();
+        session.setAttribute("listProducts", listProduct);
+        response.sendRedirect("dashboard");
     }
 
     /**

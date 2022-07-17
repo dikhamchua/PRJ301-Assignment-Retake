@@ -20,8 +20,7 @@ import lombok.ToString;
 public class OrderDetails {
     private int id;
     private int orderId;
-    private String productName;
-    private String productImage;
-    private double productPrice;
+    private Product product;
+    private Price price;
     private int quantity;
 }

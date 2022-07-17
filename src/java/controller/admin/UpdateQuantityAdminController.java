@@ -60,6 +60,8 @@ public class UpdateQuantityAdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset = UTF-8");
         //        Prepare
         HttpSession session = request.getSession();
         List<Product> listProduct = (List<Product>) session.getAttribute("listProducts");
@@ -98,6 +100,8 @@ public class UpdateQuantityAdminController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset = UTF-8");
 
 //        processRequest(request, response);
     }

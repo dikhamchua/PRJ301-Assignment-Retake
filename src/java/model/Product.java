@@ -21,7 +21,7 @@ public class Product {
     private int id;
     private String name;
     private int quantity;
-    private double price;
+    private Price price;
     private String description;
     private String imageUrl;
     private String createdDate;

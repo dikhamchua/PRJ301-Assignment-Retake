@@ -16,12 +16,12 @@
             <div class="row">
                 <!-- Image product item -->
                 
-                <img class="col-sm-6" src="${product.imageUrl}" alt="Wrong" />
+                <img class="col-sm-6" src="${pageContext.request.contextPath}/${product.imageUrl}" alt="Wrong" />
                 <!-- Description -->
                 <div class="product-description col-sm-6">
                     <h1>${product.name}</h1>
                     <span class="text-muted product-price" style="text-decoration: line-through;">$20.00</span>
-                    ${product.price}$
+                    ${product.price.price}$
                     <p class="description">${product.description}</p>
 
                     <div class="d-flex product-cart">

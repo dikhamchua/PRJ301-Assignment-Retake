@@ -72,7 +72,8 @@
 
                                                         <!--Image-->
                                                         <td>
-                                                            <img src="${product.imageUrl}" alt="alt"/> 
+                                                            <img src="${pageContext.request.contextPath}/${product.imageUrl}" 
+                                                                 width="300" height="300" alt="alt"/> 
                                                         </td>
                                                         <!--Name-->
                                                         <td>${product.name}</td>
@@ -100,7 +101,7 @@
                                                         </td>
                                                         <!--Edit-->
                                                         <td>
-                                                            <a href="edit-product">
+                                                            <a href="edit-product?productID=${product.id}">
                                                                 <i class="fa-solid fa-pen-to-square fa-2x"></i>
                                                             </a>
                                                         </td>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <!--    <filter>
+    <filter>
         <filter-name>FilterAuthentication</filter-name>
         <filter-class>filter.FilterAuthentication</filter-class>
     </filter>
@@ -23,7 +23,7 @@
     <filter-mapping>
         <filter-name>FilterAuthorization</filter-name>
         <url-pattern>/admin/*</url-pattern>
-    </filter-mapping>-->
+    </filter-mapping>
     <servlet>
         <servlet-name>HomeController</servlet-name>
         <servlet-class>controller.web.HomeController</servlet-class>
@@ -51,10 +51,6 @@
     <servlet>
         <servlet-name>OrderDeleteController</servlet-name>
         <servlet-class>controller.web.OrderDeleteController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CartUpdateController</servlet-name>
-        <servlet-class>controller.web.CartUpdateController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>OrderUpdateController</servlet-name>
@@ -119,10 +115,6 @@
     <servlet-mapping>
         <servlet-name>OrderDeleteController</servlet-name>
         <url-pattern>/order-delete</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CartUpdateController</servlet-name>
-        <url-pattern>/cart-update</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>OrderUpdateController</servlet-name>

@@ -19,10 +19,9 @@ public class OrderDAO extends DBContext {
         String sql = "INSERT INTO [dbo].[Order]\n"
                 + "           ([account_id]\n"
                 + "           ,[totalPrice]\n"
-                + "           ,[note]\n"
-                + "           ,[shipping_id])\n"
+                + "           ,[note])\n"
                 + "     VALUES\n"
-                + "           (?,?,?,?)";
+                + "           (?,?,?)";
 
         try {
             statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -30,8 +29,7 @@ public class OrderDAO extends DBContext {
             statement.setInt(1, order.getAccountId());
             statement.setDouble(2, order.getTotalPrice());
             statement.setString(3, order.getNote());
-            statement.setInt(4, order.getShippingId());
-            
+
             statement.executeUpdate();
             resultSet = statement.getGeneratedKeys();
             while (resultSet.next()) {

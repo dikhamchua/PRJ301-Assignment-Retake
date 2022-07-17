@@ -45,7 +45,7 @@
                                         ${product.id}
                                         <div class="card h-100">
                                             <a href="productDetail?productID=${product.id}">
-                                                <img src="${product.imageUrl}" alt="..." class="card-img-top">
+                                                <img src="${pageContext.request.contextPath}/${product.imageUrl}" alt="..." class="card-img-top">
                                             </a>
                                             <div class="card-body">
                                                 <div class="text-center">

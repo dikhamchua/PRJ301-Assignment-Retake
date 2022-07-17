@@ -29,6 +29,8 @@ public class CartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset = UTF-8");
         //prepare
         HttpSession session = request.getSession();
         
@@ -37,11 +39,10 @@ public class CartController extends HttpServlet {
         if (cartHashMap == null) {
             cartHashMap = new LinkedHashMap<>();
         }
-        System.out.println(cartHashMap.size());
         double totalMoney = 0;
         for (Map.Entry<Integer, Cart> entry : cartHashMap.entrySet()) {
             Cart order = entry.getValue();
-            totalMoney += order.getQuantity() * order.getProduct().getPrice();
+            totalMoney += order.getQuantity() * order.getProduct().getPrice().getPrice();
         }
         
         session.setAttribute("cartHashMap",cartHashMap );
@@ -53,6 +54,8 @@ public class CartController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset = UTF-8");
         processRequest(request, response);
     }
 

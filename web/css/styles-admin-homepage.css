@@ -13,7 +13,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     background-color: #f8f9fa;
     padding: 0 7% 0;
 }
-
+.button-search {
+    background-color: #343a40!important;
+}
 
 /* Header */
 #header{

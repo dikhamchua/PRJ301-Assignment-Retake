@@ -51,7 +51,8 @@
 
                                             <!--Image-->
                                             <td>
-                                                <img src="${cart.value.product.imageUrl}" alt="alt"/> 
+                                                <img src="${cart.value.product.imageUrl}" 
+                                                     width="300" height="300" alt="alt"/> 
                                             </td>
                                             <!--Name-->
                                             <td>${cart.value.product.name}</td>
@@ -63,7 +64,7 @@
 
                                             <!--Price-->
                                             <td>
-                                                <fmt:formatNumber type="currency" value="${cart.value.product.price}">
+                                                <fmt:formatNumber type="currency" value="${cart.value.product.price.price}">
 
                                                 </fmt:formatNumber>
                                             </td>
@@ -71,7 +72,7 @@
                                             <!--Amount-->
                                             <td>
                                                 <fmt:formatNumber type="currency"
-                                                                  value="${cart.value.product.price * cart.value.quantity}"
+                                                                  value="${cart.value.product.price.price * cart.value.quantity}"
                                                                   maxFractionDigits="2">
                                                 </fmt:formatNumber>
                                             </td>
@@ -100,46 +101,13 @@
 
                         <!--Customer information-->
                         <div class="col-xl-4 text-left customer-info">
-                            <form class="form-customer" action="check-out" method="POST" id="form-1">
-                                <h1>Information Of Customer</h1>
-                                <!--Name Customer-->
+                            <form class="form-customer" action="check-out" method="POST">
+                                <h1>Note</h1>
                                 <div class="form-group">
-                                    <label for="inputName">Name</label>
-                                    <input type="text" class="form-control"
-                                           name="nameCustomer"
-                                           id="inputName" 
-                                           placeholder="Enter name">
-                                    <span class="form-message"></span>
-
-                                </div>
-                                <!--Phone-->
-                                <div class="form-group">
-                                    <label for="inputPhone">Phone</label>
-                                    <input type="text"
-                                           name="phoneCustomer"
-                                           class="form-control"
-                                           id="inputPhone" 
-                                           placeholder="Enter phone">
-                                    <span class="form-message"></span>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <!--Address-->
-                                    <label for="inputAddress">Address</label>
-                                    <input type="text" class="form-control"
-                                           name="addressCustomer"
-                                           id="inputAddress" 
-                                           placeholder="Enter address">
-                                    <span class="form-message"></span>
-
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputNote">Note</label>
                                     <textarea class="form-control"
                                               name="noteCustomer"
                                               id="inputNote"
-                                              rows="3"></textarea>
+                                              rows="10"></textarea>
                                     <span class="form-message"></span>
                                 </div>
                                 <!--Note-->
@@ -149,7 +117,6 @@
                         </div>
                     </div>
                 </div>
-
             </c:if>
         </section>
 

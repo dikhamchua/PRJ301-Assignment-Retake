@@ -24,5 +24,4 @@ public class Order {
     private double totalPrice;
     private String note;
     private String createdDate;
-    private int shippingId;
 }

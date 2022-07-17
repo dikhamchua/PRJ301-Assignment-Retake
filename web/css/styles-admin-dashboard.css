@@ -7,7 +7,6 @@ and open the template in the editor.
     Created on : Jul 14, 2022, 6:14:22 AM
     Author     : PHAM KHAC VINH
 */
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
 
 *{
   margin: 0;
@@ -15,7 +14,6 @@ and open the template in the editor.
   box-sizing: border-box;
   list-style: none;
   text-decoration: none;
-  font-family: 'Josefin Sans', sans-serif;
 }
 
 /*#navigation-bar{
@@ -121,4 +119,15 @@ body{
   .social_media{
     display: none !important;
   }
+}
+
+/* Footer */
+#footer {
+    padding: 7% 15%;
+    background-color: #000;
+    text-align: center;
+}
+
+#footer p {
+    color: #fff;
 }

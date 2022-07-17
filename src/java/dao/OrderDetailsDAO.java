@@ -18,22 +18,19 @@ public class OrderDetailsDAO extends DBContext {
     public int saveOrderDetails(OrderDetails orderDetails) {
         String sql = "INSERT INTO [dbo].[OrderDetails]\n"
                 + "           ([order_id]\n"
-                + "           ,[productName]\n"
-                + "           ,[productImage]\n"
-                + "           ,[productPrice]\n"
+                + "           ,[productId]\n"
+                + "           ,[priceId]\n"
                 + "           ,[quantity])\n"
                 + "     VALUES\n"
-                + "           (?,?,?,?,?)";
+                + "           (?,?,?,?)";
 
         try {
             statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            
             statement.setInt(1, orderDetails.getOrderId());
-            statement.setString(2, orderDetails.getProductName());
-            statement.setString(3, orderDetails.getProductImage());
-            statement.setDouble(4, orderDetails.getProductPrice());
-            statement.setInt(5, orderDetails.getQuantity());
+            statement.setInt(2, orderDetails.getProduct().getId());
+            statement.setInt(3, orderDetails.getProduct().getPrice().getId());
+            statement.setInt(4, orderDetails.getQuantity());
 
             statement.executeUpdate();
             resultSet = statement.getGeneratedKeys();

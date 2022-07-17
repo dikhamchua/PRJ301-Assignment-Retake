@@ -1,0 +1,58 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 14, 2022, 8:01:29 PM
+    Author     : PHAM KHAC VINH
+*/
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+/* Product item */
+#product-item {
+    padding: 3% 8% 5%;
+    
+}
+
+#product-item .product-cart {
+    padding-top: 20%;
+}
+
+
+
+#product-item .product-description{
+    padding: 0 3% 0;
+}
+.product-cart {
+    padding-top: 10%;
+}
+
+
+
+body{
+   background-color: #f3f5f9;
+}
+
+.button-search {
+    background-color: #343a40!important;
+}
+
+
+/* Footer */
+#footer {
+    padding: 7% 15%;
+    background-color: #000;
+    text-align: center;
+}
+
+#footer p {
+    color: #fff;
+}

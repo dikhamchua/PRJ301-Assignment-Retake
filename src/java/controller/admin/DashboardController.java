@@ -25,6 +25,14 @@ import utils.IConstant;
  */
 public class DashboardController extends HttpServlet {
 
+
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,25 +44,8 @@ public class DashboardController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet DashboardController</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet DashboardController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset = UTF-8");
         //create instance
         CategoryDAO categoryDAO = new CategoryDAO();
         ProductDAO productDAO = new ProductDAO();
@@ -96,7 +87,6 @@ public class DashboardController extends HttpServlet {
         session.setAttribute("listProducts", listProduct);
         session.setAttribute("listCategories", categoryDAO.getListCategories());
         request.getRequestDispatcher("../view/admin/dashboard/dashboard-admin.jsp").forward(request, response);
-
     }
 
     @Override

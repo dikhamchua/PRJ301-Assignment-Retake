@@ -12,5 +12,5 @@ public class IConstant {
     public static int NUMBER_RECORD_PPAGE = 6;
     public static int roleAdmin = 1;
     public static int roleCustomer = 2;
-    
+    public static String FOLDER_PRODUCT = "image-product";
 }

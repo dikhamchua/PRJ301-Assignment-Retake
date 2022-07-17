@@ -43,7 +43,8 @@
 
                                 <!--Image-->
                                 <td>
-                                    <img src="${cart.value.product.imageUrl}" alt="alt"/> 
+                                    <img src="${cart.value.product.imageUrl}" 
+                                        width = "300" height = "300" alt="alt"/> 
                                 </td>
                                 <!--Name-->
                                 <td>${cart.value.product.name}</td>
@@ -64,7 +65,8 @@
 
                                 <!--Price-->
                                 <td>
-                                    <fmt:formatNumber type="currency" value="${cart.value.product.price}">
+                                    <fmt:formatNumber type="currency"
+                                                      value="${cart.value.product.price.price}">
 
                                     </fmt:formatNumber>
                                 </td>
@@ -72,7 +74,7 @@
                                 <!--Amount-->
                                 <td>
                                     <fmt:formatNumber type="currency"
-                                                      value="${cart.value.product.price * cart.value.quantity}"
+                                                      value="${cart.value.product.price.price * cart.value.quantity}"
                                                       maxFractionDigits="2">
                                     </fmt:formatNumber>
                                 </td>
