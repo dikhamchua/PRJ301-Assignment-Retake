@@ -1,72 +1,64 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package controller.authentication;
+package controller.admin;
 
+import dao.CategoryDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Account;
-import utils.IConstant;
+import model.Category;
 
 /**
  *
  * @author PHAM KHAC VINH
  */
-public class LogOutController extends HttpServlet {
+public class AddProductController extends HttpServlet {
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset = UTF-8");
         HttpSession session = request.getSession();
-        //xoa cookie
-        Cookie[] cookies = request.getCookies();
-        String username = null;
-        String password = null;
+        CategoryDAO categoryDAO = new CategoryDAO();
 
-        for (Cookie cooky : cookies) {
-            if (cooky.getName().equals("username")) {
-                cooky.setMaxAge(0);
-                response.addCookie(cooky);
-            }
-            if (cooky.getName().equals("password")) {
-                cooky.setMaxAge(0);
-                response.addCookie(cooky);
-            }
-
-            if (username != null && password != null) {
-                break;
-            }
-        }
-
-        Account account = (Account) session.getAttribute("account");
-        //huy account => quay tro ve home
-        session.removeAttribute("account");
-        session.removeAttribute("listInvoice");
-        session.removeAttribute("cartHashMap");
-        response.sendRedirect("home");
+        session.setAttribute("listCategory", categoryDAO.loadCategories());
+        request.getRequestDispatcher("../view/admin/dashboard/addProduct.jsp").forward(request, response);
     }
 
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset = UTF-8");
+
         processRequest(request, response);
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -85,10 +77,10 @@ public class LogOutController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LogOutController</title>");
+            out.println("<title>Servlet AddProductController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LogOutController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddProductController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

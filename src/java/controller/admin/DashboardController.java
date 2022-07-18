@@ -85,7 +85,7 @@ public class DashboardController extends HttpServlet {
         request.setAttribute("page", currentPage);
 
         session.setAttribute("listProducts", listProduct);
-        session.setAttribute("listCategories", categoryDAO.getListCategories());
+        session.setAttribute("listCategories", categoryDAO.loadCategories());
         request.getRequestDispatcher("../view/admin/dashboard/dashboard-admin.jsp").forward(request, response);
     }
 

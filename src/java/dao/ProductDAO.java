@@ -199,33 +199,33 @@ public class ProductDAO extends DBContext {
         }
     }
 
-//    public void updateProduct(Product product, int imageID) {
-//
-//        String sql = "UPDATE [Product]\n"
-//                + "   SET \n"
-//                + "      [name] = ?\n"
-//                + "      ,[quantity] = ?\n"
-//                + "      ,[price] = ?\n"
-//                + "      ,[description] = ?\n"
-//                + "      ,[imageUrl] = ?\n"
-//                + "      ,[category_id] = ?\n"
-//                + " WHERE id = ?";
-//        try {
-//            statement = connection.prepareStatement(sql);
-//            statement.setString(1, product.getName());
-//            statement.setInt(2, product.getQuantity());
-//            statement.setDouble(3, product.getPrice());
-//            statement.setString(4, product.getDescription());
-//            statement.setInt(5, imageID);
-//            statement.setInt(6, product.getCategoryId());
-//            statement.setInt(7, product.getId());
-//            statement.executeUpdate();
-//
-//        } catch (SQLException ex) {
-//            System.out.println("=========================");
-//            System.out.println("updateProduct in ProductDAO class: " + ex.getMessage());
-//            System.out.println("=========================");
-//        }
-//
-//    }
+    public void updateProduct(Product product, int imageID) {
+
+        String sql = "UPDATE [Product]\n"
+                + "   SET \n"
+                + "      [name] = ?\n"
+                + "      ,[quantity] = ?\n"
+                + "      ,[priceId] = ?\n"
+                + "      ,[description] = ?\n"
+                + "      ,[imageUrl] = ?\n"
+                + "      ,[category_id] = ?\n"
+                + " WHERE id = ?";
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, product.getName());
+            statement.setInt(2, product.getQuantity());
+            statement.setInt(3, product.getPrice().getId());
+            statement.setString(4, product.getDescription());
+            statement.setInt(5, imageID);
+            statement.setInt(6, product.getCategoryId());
+            statement.setInt(7, product.getId());
+            statement.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println("=========================");
+            System.out.println("updateProduct in ProductDAO class: " + ex.getMessage());
+            System.out.println("=========================");
+        }
+
+    }
 }

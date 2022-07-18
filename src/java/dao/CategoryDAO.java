@@ -33,10 +33,9 @@ public class CategoryDAO extends DBContext {
      * This function use to load category from database
      *
      */
-    public void loadCategories() {
-        String sql = "SELECT [id]\n"
-                + "      ,[name]\n"
-                + "  FROM [dbo].[Category]";
+    public List<Category> loadCategories() {
+        List<Category> listCategorys = new ArrayList<>();
+        String sql = "select * from [Category]";
 
         try {
             //prepare sql to statement
@@ -52,7 +51,7 @@ public class CategoryDAO extends DBContext {
                         name(resultSet.getString(2)).
                         build();
 
-                listCategories.add(category);
+                listCategorys.add(category);
             }
 
         } catch (Exception e) {
@@ -60,6 +59,7 @@ public class CategoryDAO extends DBContext {
             System.out.println("Load database categories in CategoryDAO class: " + e.getMessage());
             System.out.println("=========================");
         }
+        return listCategorys;
     }
 
 }

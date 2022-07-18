@@ -17,7 +17,7 @@
     <section id="navigation-bar" class ="sticky-top bg-dark ">
         <div class="container-fluid ">
             <nav class="navbar navbar-expand-lg navbar-light  ">
-                <a href="#" class="navbar-brand text-white">Start Bootstrap</a>
+                <a href="search?keyword=" class="navbar-brand text-white">Book Store</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
                     aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package controller.web;
 
 import dao.ProductDAO;
@@ -21,34 +20,31 @@ import model.Product;
  * @author PHAM KHAC VINH
  */
 public class SearchController extends HttpServlet {
-   
-    
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset = UTF-8");
-        
+
         String keyword = request.getParameter("keyword");
         ProductDAO productDAO = new ProductDAO();
-        
+
         List<Product> listProduct = productDAO.getProductsByKeyword(keyword);
         HttpSession session = request.getSession();
         session.setAttribute("listProducts", listProduct);
         response.sendRedirect("home");
-    } 
-
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset = UTF-8");
     }
 
 }
-
-
-

@@ -74,7 +74,7 @@ public class HomeController extends HttpServlet {
 
         
         session.setAttribute("listProducts", listProduct);
-        session.setAttribute("listCategories", categoryDAO.getListCategories());
+        session.setAttribute("listCategories", categoryDAO.loadCategories());
         request.getRequestDispatcher("view/web/home/index.jsp").forward(request, response);
 //        request.getRequestDispatcher("pageController").forward(request, response);
     }

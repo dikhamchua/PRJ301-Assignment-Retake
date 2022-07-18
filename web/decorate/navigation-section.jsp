@@ -19,7 +19,7 @@
         <section id="navigation-bar">
             <div class="container-fluid">
                 <nav class="navbar navbar-expand-lg navbar-light ">
-                    <a href="#" class="navbar-brand">Start Bootstrap</a>
+                    <a href="home" class="navbar-brand">Book Store</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
                             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -57,7 +57,7 @@
                         <!--Button Login-->
                         <c:choose>
                             <c:when test="${sessionScope.account != null}">
-                                <a class="btn btn-outline-primary ml-2" href="login">
+                                <a class="btn btn-outline-primary ml-2" href="view-profile">
                                     ${account.displayName}
                                 </a>
                                 <a class="btn btn-outline-primary ml-2" href="logout">

@@ -6,6 +6,7 @@
 package controller.admin;
 
 import dao.ImageDAO;
+import dao.PriceDAO;
 import dao.ProductDAO;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import model.Image;
+import model.Price;
 import model.Product;
 import utils.IConstant;
 
@@ -63,6 +65,7 @@ public class EditProductController extends HttpServlet {
         //prepare
         ImageDAO imageDAO = new ImageDAO();
         ProductDAO productDAO = new ProductDAO();
+        PriceDAO priceDao = new PriceDAO();
 
         if (priceProduct < 0) {
             priceProduct = 0;
@@ -109,18 +112,33 @@ public class EditProductController extends HttpServlet {
         } else {
             idImage = imageDAO.getImageBy(product.getImageUrl()).getId();
         }
+        Product productUpdate;
+        if (product.getPrice().getPrice() == priceProduct) {
+             productUpdate = Product.builder().
+                    id(idProduct).
+                    name(nameProduct).
+                    quantity(quantityProduct).
+                    price(product.getPrice()).
+                    description(descriptionProduct).
+                    imageUrl(url).
+                    categoryId(categoryId)
+                    .build();
+        }else {
+            Price price = Price.builder().price(priceProduct).build();
+            price.setId(priceDao.savePrice(price));
+            productUpdate = Product.builder().
+                    id(idProduct).
+                    name(nameProduct).
+                    quantity(quantityProduct).
+                    price(price).
+                    description(descriptionProduct).
+                    imageUrl(url).
+                    categoryId(categoryId)
+                    .build();
+        }
 
-//        Product productUpdate = Product.builder().
-//                id(idProduct).
-//                name(nameProduct).
-//                quantity(quantityProduct).
-//                price(priceProduct).
-//                description(descriptionProduct).
-//                imageUrl(url).
-//                categoryId(categoryId)
-//                .build();
-//
-//        productDAO.updateProduct(productUpdate, idImage);
+
+        productDAO.updateProduct(productUpdate, idImage);
         request.getRequestDispatcher("search?keyword=").forward(request, response);
     }
 

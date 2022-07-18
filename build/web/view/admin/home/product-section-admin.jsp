@@ -50,7 +50,7 @@
                                             <div class="card-body">
                                                 <div class="text-center">
                                                     <h5 class="card-title">${product.name}</h5>
-                                                    ${product.price}$
+                                                    ${product.price.price}$
                                                 </div>
                                             </div>
 

@@ -55,7 +55,7 @@
                                 <label for="priceProduct">Price</label>
                                 <input type="text" id="priceProduct" class="form-control" min="0" step ="0.1"
                                        onkeypress="return event.charCode != 45"
-                                       name="price" value="${product.price}" placeholder="Input price product"/>
+                                       name="price" value="${product.price.price}" placeholder="Input price product"/>
                             </h2>
                         </div>    
                         <!--Description product-->

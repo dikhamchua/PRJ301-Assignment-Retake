@@ -17,8 +17,8 @@
         <url-pattern>/cart</url-pattern>
         <url-pattern>/check-out</url-pattern>
         <url-pattern>/logout</url-pattern>
+        <url-pattern>/view-profile</url-pattern>
         <url-pattern>/admin/*</url-pattern>
-        
     </filter-mapping>
     <filter-mapping>
         <filter-name>FilterAuthorization</filter-name>
@@ -88,6 +88,18 @@
         <servlet-name>EditProductController</servlet-name>
         <servlet-class>controller.admin.EditProductController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewProfileController</servlet-name>
+        <servlet-class>controller.web.ViewProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewInvoiceController</servlet-name>
+        <servlet-class>controller.web.ViewInvoiceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddProductController</servlet-name>
+        <servlet-class>controller.admin.AddProductController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -151,6 +163,18 @@
     <servlet-mapping>
         <servlet-name>EditProductController</servlet-name>
         <url-pattern>/admin/edit-product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProfileController</servlet-name>
+        <url-pattern>/view-profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewInvoiceController</servlet-name>
+        <url-pattern>/view-invoice</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductController</servlet-name>
+        <url-pattern>/admin/addProductAdmin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

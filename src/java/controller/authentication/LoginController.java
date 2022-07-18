@@ -5,6 +5,7 @@
 package controller.authentication;
 
 import dao.AccountDAO;
+import dao.InvoiceDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,7 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.net.HttpCookie;
+import java.util.HashMap;
+import java.util.List;
 import model.Account;
+import model.Invoice;
+import model.Product;
 import utils.IConstant;
 
 /**
@@ -44,16 +49,21 @@ public class LoginController extends HttpServlet {
                 break;
             }
         }
-        
+
         Account account = Account.builder().username(username).password(password).build();
         AccountDAO dao = new AccountDAO();
         Account accountExist = dao.getAccount(account);
         if (accountExist != null) {
+            HttpSession session = request.getSession();
+            InvoiceDAO invoiceDAO = new InvoiceDAO();
+
+            HashMap<Integer, List<Product>> listInvoice = invoiceDAO.getAllInvoice();
+            session.setAttribute("listInvoice", listInvoice);
             response.sendRedirect("home");
-        }else {
+        } else {
             request.getRequestDispatcher("view/web/login/login.jsp").forward(request, response);
         }
-        
+
     }
 
     @Override
@@ -74,7 +84,7 @@ public class LoginController extends HttpServlet {
         if (accountExist == null) {
             String error = "Username or password is not correct !!";
             request.setAttribute("error", error);
-            request.getRequestDispatcher("view/login/login.jsp").forward(request, response);
+            request.getRequestDispatcher("view/web/login/login.jsp").forward(request, response);
         } else {
             Cookie usernameCookie = new Cookie("username", username);
             Cookie passwordcCookie = new Cookie("password", password);
@@ -84,10 +94,15 @@ public class LoginController extends HttpServlet {
             response.addCookie(usernameCookie);
             response.addCookie(passwordcCookie);
             
+            
+            InvoiceDAO invoiceDAO = new InvoiceDAO();
+
+            HashMap<Integer, List<Product>> listInvoice = invoiceDAO.getAllInvoice();
+            session.setAttribute("listInvoice", listInvoice);
             session.setAttribute("account", accountExist);
             if (accountExist.getRole() == IConstant.roleAdmin) {
                 response.sendRedirect("admin/home");
-            }else {
+            } else {
                 response.sendRedirect("home");
             }
         }
@@ -111,7 +126,7 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
